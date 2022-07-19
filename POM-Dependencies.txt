@@ -1,0 +1,47 @@
+<!-- Plugin which will generate the test jar -->
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-jar-plugin</artifactId>
+  <version>2.4</version>
+  <executions>
+      <execution>
+          <goals>
+              <goal>test-jar</goal>
+          </goals>
+      </execution>
+  </executions>
+</plugin>
+
+<-- Use this to produce all dpeendencies -->
+<plugin>
+  <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+<!-- Plugin which will generate the external dependency jar MIGHT NOT NEED THIS ANYMORE -->
+<plugin>
+  <artifactId>maven-assembly-plugin</artifactId>
+  <version>2.3</version>
+  <configuration>
+      <descriptor>src/main/assembly/assembly.xml</descriptor>
+  </configuration>
+  <executions>
+      <execution>
+          <id>make-assembly</id>
+          <phase>package</phase>
+          <goals>
+              <goal>single</goal>
+          </goals>
+      </execution>
+  </executions>
+</plugin>
